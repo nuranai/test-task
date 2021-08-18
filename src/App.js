@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import "./App.css"
 
-function App() {
+export default function App() {
+  // состояние основной кнопки
+  const [number, setNumber] = useState("1")
+  // состояние видимости блоки кнопок с выборами
+  const [visibility, setVisibility] = useState(false)
+
+  function ChangeNum(e) {
+    e.preventDefault()
+    // меняем состояние основной кнопки
+    setNumber(e.target.innerText)
+    // "прячем" блок с выбором
+    setVisibility(false)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <button onClick={() => setVisibility(!visibility)} className="main">{number}</button>
+      {
+        visibility && <div className="choise_block">
+          {["1", "2", "3"].map(val => <button key={val} onClick={ChangeNum} className="choise">{val}</button>)}
+        </div>
+      }
     </div>
-  );
-}
-
-export default App;
+  )
+};
