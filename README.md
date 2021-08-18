@@ -10,3 +10,4 @@
 
 После нажатия кнопки выбора должна исчезнуть
 
+[Demo](https://nuranai.github.io/test-task/)
